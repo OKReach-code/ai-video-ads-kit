@@ -1,0 +1,12 @@
+{
+ "voz": "PON_AQUI_EL_VOICE_ID_DE_ELEVENLABS",
+ "idioma": "es",
+ "stability": 0.3,
+ "style": 0.15,
+ "bloques": [
+  ["B1", "Gancho: la primera frase, la que hace que alguien deje de hacer scroll."],
+  ["B2", "El problema: lo que le pasa a tu cliente ideal, con un dato concreto."],
+  ["B3", "La solución: qué hace tu producto y el resultado que consigue."],
+  ["B4", "Cierre y llamada a la acción. ¿Quieres probarlo gratis?"]
+ ]
+}

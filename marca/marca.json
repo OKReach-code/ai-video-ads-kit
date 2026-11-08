@@ -1,0 +1,21 @@
+{
+ "nombre": "Mi Marca",
+ "web": "mimarca.com",
+ "colores": {
+  "primario": "#3D5AFE",
+  "acento": "#FFB300",
+  "resaltado": "#2EE6D6",
+  "alerta": "#FF5470",
+  "fondo": "#0A0A12"
+ },
+ "fuentes": {
+  "texto": "Montserrat-Variable.ttf",
+  "titulares": "Montserrat-Variable.ttf",
+  "titulares_mayusculas": "none"
+ },
+ "logo": "marca/logo.png",
+ "cta": "¿Quieres probarlo gratis?",
+ "voz": {"elevenlabs_voice_id": "", "idioma": "es", "stability": 0.3, "style": 0.15},
+ "persona": {"look": "marca/persona_look.png", "cara": "marca/persona_cara.png", "descripcion": "describe aquí a tu presentador/a: edad, pelo, ropa, plató"},
+ "asistente_ia": "marca/asistente.png"
+}

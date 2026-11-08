@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="assets/gsap.min.js"></script>
+<style>
+/* Plantilla de anuncio vertical (HyperFrames). tools/build.py rellena los marcadores (dobles guiones bajos) con marca.json y escenas.json.
+   Reglas (docs/REGLAS.md): texto en la banda segura 270-1250 · sin botón de CTA · color sólido en las letras (nunca degradado) · sin filtros ·
+   las tarjetas nunca tapan una cara · subtítulos por frases cortas · una sola palabra grande por titular · 1-2 titulares inclinados como mucho. */
+@font-face{font-family:T;src:url(assets/fonts/__FONT_TEXT__)}
+@font-face{font-family:H;src:url(assets/fonts/__FONT_HEAD__)}
+:root{--primary:__C_PRIMARY__;--accent:__C_ACCENT__;--highlight:__C_HIGHLIGHT__;--alert:__C_ALERT__;--ink:#16141c;--bg:__C_BG__;--head-case:__HEAD_CASE__}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--bg)}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:T,system-ui,sans-serif;color:#fff;background:var(--bg)}
+.clip{position:absolute;left:0;top:0;width:1080px;height:1920px}
+video.clip{object-fit:cover}
+video.win{border-radius:40px}
+.card{border-radius:28px;object-fit:cover;background:#fff;box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 45%,transparent),0 0 70px color-mix(in srgb,var(--primary) 30%,transparent),0 40px 100px rgba(0,0,0,.6)}
+img.cut{object-fit:contain;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
+.layer{position:absolute;inset:0;pointer-events:none}
+/* fondo: campo de líneas discontinuas que fluyen + foco cenital en los tramos sin persona */
+#flow{z-index:0;opacity:.95}
+#flow path{fill:none;stroke:#fff;stroke-opacity:.2;stroke-width:2.6;stroke-linecap:round;stroke-dasharray:3 13}
+.spot{background:radial-gradient(ellipse 60% 34% at 50% 0%,rgba(255,255,255,.16),rgba(255,255,255,0) 72%),radial-gradient(ellipse 95% 70% at 50% 55%,rgba(0,0,0,0) 55%,rgba(0,0,0,.45) 100%)}
+#flashL{z-index:30;background:radial-gradient(ellipse 80% 60% at 50% 45%,#fffaf0,rgba(255,236,200,.85) 55%,rgba(255,220,170,.5));opacity:0}
+/* contador */
+.cnt{z-index:12;left:0;top:0;width:1080px;height:auto;text-align:center;opacity:0}
+.cnt .n{font-family:H,T;font-size:220px;line-height:1;color:var(--highlight);text-transform:var(--head-case);text-shadow:0 0 40px color-mix(in srgb,var(--highlight) 45%,transparent)}
+.cnt .l{margin-top:6px;font-weight:700;font-size:42px;color:#fff}
+/* titular fijo (úsalo poco: los titulares cinéticos van en los subtítulos) */
+.tit{z-index:12;left:80px;width:920px;height:auto;text-align:center;font-family:H,T;font-size:110px;line-height:1;color:#fff;text-transform:var(--head-case);opacity:0}
+/* CTA: la pregunta aparece palabra a palabra con el logo; sin persona, sin botón y sin cartela */
+#cta{z-index:20}
+#ctaLogo{z-index:21;left:0;top:300px;width:1080px;height:auto;text-align:center;opacity:0}
+#ctaLogo img{max-width:560px;max-height:200px}
+#ctaQ{z-index:21;left:90px;top:520px;width:900px;height:auto;text-align:center;font-weight:800;font-size:84px;line-height:1.12;color:#fff;text-wrap:balance;text-shadow:0 6px 30px rgba(0,0,0,.6)}
+#ctaQ span{display:inline-block;opacity:0;margin:0 .1em}
+#ctaQ span.hl{font-family:H,T;font-weight:400;text-transform:var(--head-case);color:var(--highlight);font-size:98px}
+/* subtítulos por frases cortas; titular cinético = una palabra grande en la fuente de titulares con halo del mismo color */
+#caps{z-index:25}
+.cap{position:absolute;left:80px;right:80px;text-align:center;opacity:0;line-height:1.12;text-wrap:balance}
+.cap .w{display:inline-block;font-weight:800;font-size:56px;margin:0 .12em;color:#fff;letter-spacing:-.005em;text-shadow:0 3px 14px rgba(0,0,0,.9),0 0 3px #000,0 0 22px rgba(0,0,0,.7)}
+.cap .w.hl{color:var(--highlight)}
+.cap .w.ast{font-family:H,T;font-weight:400;font-size:80px;text-transform:var(--head-case);color:var(--accent)}
+.cap .w.k{display:block;font-family:H,T;font-weight:400;font-size:128px;line-height:.95;text-transform:var(--head-case);margin:4px 0 0}
+.cap .w.k.acento{color:var(--accent);text-shadow:0 0 34px color-mix(in srgb,var(--accent) 55%,transparent),0 3px 14px rgba(0,0,0,.8)}
+.cap .w.k.resaltado{color:var(--highlight);text-shadow:0 0 34px color-mix(in srgb,var(--highlight) 55%,transparent),0 3px 14px rgba(0,0,0,.8)}
+.cap .w.k.primario{color:var(--primary);text-shadow:0 0 34px color-mix(in srgb,var(--primary) 55%,transparent),0 3px 14px rgba(0,0,0,.8)}
+.cap .w.k.alerta{color:var(--alert);text-shadow:0 0 34px color-mix(in srgb,var(--alert) 55%,transparent),0 3px 14px rgba(0,0,0,.8)}
+.cap .w.k.texto{color:#fff}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="__DUR__" data-width="1080" data-height="1920">
+  <svg id="flow" class="clip" data-start="0" data-duration="__DUR__" viewBox="0 0 1080 1920"></svg>
+  __FONDOS__
+  __VIDEOS__
+  __INSERTOS__
+  <div id="cta" class="clip spot" data-start="__CTA__" data-duration="__CTA_D__"></div>
+  <div id="ctaLogo" class="clip" data-start="__CTA__" data-duration="__CTA_D__"><img src="assets/img/__LOGO__" alt="logo" /></div>
+  <div id="ctaQ" class="clip" data-start="__CTA__" data-duration="__CTA_D__"></div>
+  <div id="flashL" class="clip" data-start="0" data-duration="__DUR__"></div>
+  <div id="caps" class="clip layer" data-start="0" data-duration="__DUR__"></div>
+</div>
+<script>
+const CAPS = /*__CAPS__*/[];
+const T = /*__T__*/{};
+const $ = s => document.querySelector(s);
+const tl = gsap.timeline({ paused: true });
+const E = { o: 'power3.out', b: 'back.out(1.7)' };
+
+/* vídeos e imágenes: persona a pantalla completa (punch-in lento), ventana que se encoge, tarjetas 3D con borde de color */
+T.items.forEach(v => {
+  const el = document.getElementById(v.id); el.style.transformOrigin = v.o || '50% 50%';
+  if (v.modo === 'ventana') { tl.fromTo(el, { scale: 1.9, y: 640 }, { scale: 1, y: 0, duration: 0.5, ease: E.o, immediateRender: false }, v.t);
+    tl.fromTo(el, { scale: 1 }, { scale: 1.03, duration: Math.max(0.1, v.d - 0.5), ease: 'none', immediateRender: false }, v.t + 0.5); return; }
+  if (v.modo === 'tarjeta3d') { tl.fromTo(el, { opacity: 0, rotationY: 70, x: 260, filter: 'blur(14px)', transformPerspective: 1400 },
+      { opacity: 1, rotationY: -13, rotationX: 4, x: 0, filter: 'blur(0px)', transformPerspective: 1400, duration: 0.5, ease: E.o, immediateRender: false }, v.t);
+    tl.fromTo(el, { scale: 1 }, { scale: 1.02, duration: v.d, ease: 'none', immediateRender: false }, v.t); return; }
+  if (v.modo === 'tarjeta' || v.modo === 'recorte') { tl.fromTo(el, { opacity: 0, y: 80, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: E.b, immediateRender: false }, v.t);
+    tl.fromTo(el, { scale: 1 }, { scale: 1.03, duration: Math.max(0.1, v.d - 0.45), ease: 'none', immediateRender: false }, v.t + 0.45); return; }
+  tl.fromTo(el, { scale: 1 }, { scale: v.zoom || 1.04, duration: v.d, ease: 'none', immediateRender: false }, v.t);   /* completa */
+});
+/* contadores: acaban en la cifra final y se quedan quietos antes del corte */
+T.counters.forEach(c => { const el = document.getElementById(c.id), n = el.querySelector('.n'), o = { v: c.de };
+  const fmt = v => String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + (c.sufijo || '');
+  n.textContent = fmt(c.de);
+  tl.fromTo(el, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.4, ease: E.b, immediateRender: false }, c.t);
+  tl.to(o, { v: c.a, duration: c.dur, ease: 'power1.inOut', onUpdate: () => n.textContent = fmt(o.v) }, c.t + 0.15); });
+T.titles.forEach(c => tl.fromTo('#' + c.id, { opacity: 0, y: 30, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: E.b, immediateRender: false }, c.t));
+/* destello de luz cálida al volver a la persona desde un B-roll */
+T.flashes.forEach(t => { tl.fromTo('#flashL', { opacity: 0 }, { opacity: 1, duration: 0.14, ease: 'power2.in', immediateRender: false }, t - 0.14); tl.to('#flashL', { opacity: 0, duration: 0.45, ease: 'power2.out' }, t); });
+
+/* CTA */
+tl.fromTo('#cta', { opacity: 0 }, { opacity: 1, duration: 0.2, immediateRender: false }, T.CTA);
+tl.fromTo('#ctaLogo', { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.4, ease: E.o, immediateRender: false }, T.CTA + 0.05);
+const ctaQ = $('#ctaQ'), HLW = new RegExp(T.ctaHL || '^$', 'i');
+T.CW.forEach(([t, w]) => { const s = document.createElement('span'); s.textContent = w; if (HLW.test(w)) s.className = 'hl'; ctaQ.appendChild(s); ctaQ.appendChild(document.createTextNode(' '));
+  tl.fromTo(s, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.18, ease: E.o, immediateRender: false }, t - 0.05); });
+tl.to('#ctaLogo', { scale: 1.04, duration: 0.6, yoyo: true, repeat: 1, ease: 'sine.inOut' }, T.END + 0.2);
+
+/* fondo de líneas que fluyen */
+const flow = $('#flow');
+for (let k = 0; k < 44; k++) { const y0 = -60 + k * 46; let d = '';
+  for (let x = -60; x <= 1140; x += 30) { const c = Math.exp(-Math.pow((y0 - 900) / 700, 2)); const y = y0 + Math.sin(x / 170 + k * 0.45) * (18 + 40 * c) + (x - 540) * (y0 - 900) / 5200;
+    d += (x === -60 ? 'M' : 'L') + x + ' ' + y.toFixed(1) + ' '; }
+  const p = document.createElementNS('http://www.w3.org/2000/svg', 'path'); p.setAttribute('d', d); flow.appendChild(p); }
+tl.fromTo('#flow path', { strokeDashoffset: 0 }, { strokeDashoffset: -16 * T.dur * 3, duration: T.dur, ease: 'none' }, 0);
+
+/* subtítulos: la frase entera de una vez; el gancho palabra a palabra; titulares cinéticos (uno inclinado como mucho por bloque) */
+const capRoot = $('#caps');
+CAPS.forEach(c => {
+  const d = document.createElement('div'); d.className = 'cap'; d.style.top = c.y + 'px';
+  c.w.forEach(w => { const s = document.createElement('span'); s.className = 'w' + (w.k ? ' k ' + w.k : (w.hl ? ' hl' : '') + (w.ast ? ' ast' : '')); s.textContent = w.t; d.appendChild(s); d.appendChild(document.createTextNode(' '));
+    if (c.prog) tl.fromTo(s, { opacity: 0 }, { opacity: 1, duration: 0.08, immediateRender: false }, Math.max(c.s, w.s - 0.05)); });
+  capRoot.appendChild(d);
+  gsap.set(d, { yPercent: c.a === 'b' ? -100 : -50 });
+  if (c.prog) gsap.set(d.querySelectorAll('.w'), { opacity: 0 });
+  if (c.kin && c.tilt) tl.fromTo(d, { opacity: 0, y: 40, rotation: -12, scale: 0.7 }, { opacity: 1, y: 0, rotation: -5, scale: 1, duration: 0.3, ease: E.b, immediateRender: false }, c.s);
+  else if (c.kin) tl.fromTo(d, { opacity: 0, y: 30, scale: 0.85 }, { opacity: 1, y: 0, scale: 1, duration: 0.25, ease: E.b, immediateRender: false }, c.s);
+  else tl.fromTo(d, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.12, ease: E.o, immediateRender: false }, c.s);
+  tl.set(d, { opacity: 0 }, c.x);
+});
+
+window.__timelines = window.__timelines || {};
+window.__timelines['main'] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+# Secretos
+.env
+keys/
+*apikey*
+*api_key*
+
+# Sistema
+.DS_Store
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+
+# Proyectos: se versiona el "código" del anuncio (guion, planos, escenas, prompts, LEEME), no los medios ni los renders
+proyectos/*/
+!proyectos/README.md

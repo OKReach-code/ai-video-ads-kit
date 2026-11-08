@@ -1,0 +1,19 @@
+{
+ "encuadre_persona": "50% 30%",
+ "escenas": [
+  {"tipo": "persona", "plano": "S1", "desde": "B1"},
+  {"tipo": "fondo", "desde": "B2"},
+  {"tipo": "fondo", "desde": "B3"},
+  {"tipo": "persona", "plano": "S4", "desde": "B4"},
+  {"tipo": "cta", "desde_palabra": "¿Quieres"}
+ ],
+ "insertos": [
+  {"tipo": "contador", "desde_palabra": "dato", "hasta_palabra": "concreto.", "de": 0, "a": 70, "sufijo": " %", "etiqueta": "lo abandonan", "posicion": "centro"},
+  {"tipo": "clip", "archivo": "captura_producto.mp4", "desde_palabra": "producto", "hasta_palabra": "consigue.", "modo": "tarjeta3d", "posicion": "centro"}
+ ],
+ "resaltar": ["problema", "solución", "gratis"],
+ "fuente_titulares": [],
+ "titulares": {"resultado": "acento"},
+ "inclinados": ["resultado"],
+ "cta_resaltar": "gratis"
+}
