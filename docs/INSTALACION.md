@@ -1,5 +1,16 @@
 # Instalación paso a paso
 
+## La forma fácil (recomendada)
+En la app **Terminal**:
+```bash
+curl -fsSL https://raw.githubusercontent.com/OKReach-code/ai-video-ads-kit/main/install.sh | bash
+```
+Claude se abre con `/instalar` y hace contigo todo lo de abajo: instala los programas, te lleva a crear cada cuenta, te abre
+`.env` para la clave y comprueba que todo funciona. Con la app de escritorio: abre la carpeta del kit en *Code* y escribe
+`/instalar`.
+
+## A mano
+
 Tiempo: unos 20 minutos la primera vez. Probado en macOS; en Windows usa WSL 2 (Ubuntu) y los mismos comandos con `apt` en lugar de `brew`.
 
 ## 1. Cuentas que necesitas

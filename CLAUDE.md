@@ -4,6 +4,7 @@ Este repositorio produce anuncios en vídeo verticales (1080×1920) con IA para 
 skill `anuncios-ia` y sigue `docs/METODOLOGIA.md`. Antes de entregar, repasa `docs/REGLAS.md` punto por punto.
 
 ## Antes de empezar
+- **Instalación:** si falta `.venv`, `.env` o la clave de ElevenLabs, o no responden las herramientas de Kling, propón `/instalar`.
 - **Marca:** `marca/marca.json`. Si tiene valores de ejemplo («Mi Marca», sin `elevenlabs_voice_id`), propón `/marca` antes de nada.
 - **Python:** usa siempre `.venv/bin/python3` (si no existe, `./setup.sh`). **Montaje:** HyperFrames 0.8.162, render a 24 fps; nunca edites
   `film/index.html` a mano: se regenera con `tools/build.py` desde `src/template.html` + `escenas.json`.
