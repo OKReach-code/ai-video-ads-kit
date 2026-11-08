@@ -1,13 +1,12 @@
 # Instalación paso a paso
 
 ## La forma fácil (recomendada)
-En la app **Terminal**:
-```bash
-curl -fsSL https://raw.githubusercontent.com/OKReach-code/ai-video-ads-kit/main/install.sh | bash
-```
-Claude se abre con `/instalar` y hace contigo todo lo de abajo: instala los programas, te lleva a crear cada cuenta, te abre
-`.env` para la clave y comprueba que todo funciona. Con la app de escritorio: abre la carpeta del kit en *Code* y escribe
-`/instalar`.
+1. Descarga [ai-video-ads-kit.zip](https://github.com/OKReach-code/ai-video-ads-kit/releases/latest/download/ai-video-ads-kit.zip) y descomprímelo.
+2. En la app de escritorio de Claude, pestaña *Code*, abre la carpeta `ai-video-ads-kit`.
+3. Escribe «instálalo». Claude hace contigo todo lo de abajo: instala los programas, te lleva a crear cada cuenta, te abre
+   `.env` para la clave y comprueba que todo funciona.
+
+Desde la Terminal: `curl -fsSL https://raw.githubusercontent.com/OKReach-code/ai-video-ads-kit/main/install.sh | bash`
 
 ## A mano
 

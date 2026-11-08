@@ -14,19 +14,18 @@ editable para DaVinci Resolve o Premiere y una sala de revisión donde tu client
 | **Montaje** | HyperFrames: fondo de líneas que fluyen, persona que se encoge a ventana, capturas en 3D, titulares cinéticos, contadores, CTA final |
 | **Salida** | MP4 1080×1920 a −14,5 LUFS + paquete editable (XML, gráficos con transparencia, pistas, SRT) |
 
-## Instalación: un comando
-Abre la app **Terminal** y pega:
-```bash
-curl -fsSL https://raw.githubusercontent.com/OKReach-code/ai-video-ads-kit/main/install.sh | bash
-```
-Descarga el kit, instala Claude Code si no lo tienes y abre Claude con `/instalar`, que te guía paso a paso: programas,
-cuentas de ElevenLabs, Kling e Higgsfield, claves y comprobación final. Después te lleva a `/marca`.
+## Instalación: descarga y abre en Claude
+1. **Descarga el kit:** [ai-video-ads-kit.zip](https://github.com/OKReach-code/ai-video-ads-kit/releases/latest/download/ai-video-ads-kit.zip) y descomprímelo (doble clic).
+2. **Ábrelo en Claude:** en la app de escritorio de Claude ([descárgala](https://claude.ai/download)), pestaña *Code*, elige la
+   carpeta `ai-video-ads-kit`.
+3. **Escribe «instálalo».** Claude instala los programas y te guía para crear y conectar las cuentas de ElevenLabs, Kling e
+   Higgsfield, paso a paso. Al terminar te lleva a configurar tu marca.
 
-¿Prefieres la app de escritorio de Claude? Descarga el repositorio, abre la carpeta en la pestaña *Code* y escribe `/instalar`.
-La guía manual está en [`docs/INSTALACION.md`](docs/INSTALACION.md).
+¿Prefieres la Terminal? `curl -fsSL https://raw.githubusercontent.com/OKReach-code/ai-video-ads-kit/main/install.sh | bash`
+hace lo mismo. La guía manual está en [`docs/INSTALACION.md`](docs/INSTALACION.md).
 
 ## Empieza aquí
-1. **Instalación:** el comando de arriba (unos 15 min, casi todo automático)
+1. **Instalación:** descarga, abre en Claude y escribe «instálalo» (unos 15 min, guiado)
 2. **Tu marca:** `/marca`
 3. **Tu primer anuncio:**
    ```text

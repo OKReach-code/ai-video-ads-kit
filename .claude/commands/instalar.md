@@ -17,13 +17,16 @@ Kling (la persona que habla) e Higgsfield (imágenes, opcional). Yo hago el rest
 - Si algo ya está hecho (programa instalado, clave puesta, conector activo), compruébalo, márcalo y pasa al siguiente.
 - Ante un error, explica en una frase qué pasa y qué hacer; no sigas como si nada.
 
+Funciona igual en la app de escritorio de Claude (pestaña *Code*) que en la terminal. Si la persona llegó con el .zip
+descargado, la carpeta puede estar en Descargas: está bien así, no hace falta moverla.
+
 ## Paso 1 · Programas (automático)
 1. Comprueba `brew`, `ffmpeg`, `node` (≥ 18), `python3` y `git`.
 2. Si falta Homebrew, da este comando para pegar en Terminal (pide su contraseña del Mac) y espera:
    `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
    Después recuerda las dos líneas `eval "$(/opt/homebrew/bin/brew shellenv)"` que el instalador indica.
 3. Instala tú lo que falte: `brew install ffmpeg node python git`.
-4. Ejecuta `./setup.sh`. Es normal que al final avise de que falta la clave de ElevenLabs.
+4. Ejecuta `zsh setup.sh` (en Linux, `bash setup.sh`). Es normal que al final avise de que falta la clave de ElevenLabs.
 En Linux o Windows (WSL) usa `apt` en lugar de `brew`.
 
 ## Paso 2 · ElevenLabs (voz, música y efectos)
