@@ -24,7 +24,7 @@ Tiempo: unos 20 minutos la primera vez. Probado en macOS; en Windows usa WSL 2 (
 
 ## 3. Descargar e instalar el kit
 ```bash
-git clone __REPO_URL__ ~/ai-video-ads-kit
+git clone https://github.com/OKReach-code/ai-video-ads-kit.git ~/ai-video-ads-kit
 cd ~/ai-video-ads-kit && ./setup.sh
 ```
 `setup.sh` comprueba ffmpeg, Node y Python, crea un entorno de Python propio (`.venv`), crea el archivo `.env` y prepara HyperFrames
